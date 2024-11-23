@@ -5,6 +5,7 @@ from typing import List
 from dotenv import load_dotenv
 from openai import OpenAI
 
+load_dotenv("../.env.dev")
 MAX_INPUT_LENGHT = 50
 
 def validate_lenght(prompt:str) -> bool:
@@ -76,7 +77,7 @@ def generate_keywords(prompt: str, max_tokens:int= 32) -> List[str]:
     return keywords_array
 
 def main():    
-    load_dotenv("../.env.dev")
+
 
     # Parse input
     parser = argparse.ArgumentParser()
