@@ -5,7 +5,7 @@ from typing import List
 from dotenv import load_dotenv
 from openai import OpenAI
 
-load_dotenv("../.env.dev")
+load_dotenv(".env") # locally ../.env.dev
 MAX_INPUT_LENGHT = 50
 
 def validate_lenght(prompt:str) -> bool:
@@ -15,10 +15,11 @@ def generate_branding_snippet(prompt: str, max_tokens:int= 32) -> str:
     '''
     TODO:
     '''
-    client = OpenAI(api_key=os.getenv("OPENAI_KEY"))
+    client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
     enriched_prompt = f"Generate upbeat branding snippet for {prompt}: "
     print(enriched_prompt)
+    print(os.getenv("OPENAI_API_KEY")[0:14])
 
     completion = client.chat.completions.create(
         model="gpt-4o-mini",
@@ -49,7 +50,7 @@ def generate_keywords(prompt: str, max_tokens:int= 32) -> List[str]:
     '''
     TODO:
     '''
-    client = OpenAI(api_key=os.getenv("OPENAI_KEY"))
+    client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
     enriched_prompt = f"Generate related branding keywords for {prompt}, return only the keywords and all of them separeted by commas."
     print(enriched_prompt)

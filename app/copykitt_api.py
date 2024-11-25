@@ -1,8 +1,10 @@
 from typing import Union
 from copykitt import generate_branding_snippet, generate_keywords
 from fastapi import FastAPI, HTTPException
+from mangum import Mangum
 
 app = FastAPI()
+handler = Mangum(app)
 MAX_INPUT_LENGHT = 50
 
 
