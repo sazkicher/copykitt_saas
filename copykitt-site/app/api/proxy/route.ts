@@ -2,13 +2,13 @@ import { NextRequest, NextResponse } from 'next/server';
 
 export async function GET(req: NextRequest) {
   try {
-    // Extrae el parámetro `prompt` de la query string
+    // Get `prompt` from query string
     const prompt = req.nextUrl.searchParams.get('prompt');
     if (!prompt) {
       return NextResponse.json({ error: 'Missing prompt parameter' }, { status: 400 });
     }
 
-    // Llama al endpoint original con el método GET
+    // Call original endpoint
     const response = await fetch(`${process.env.API_ENDPOINT}?prompt=${encodeURIComponent(prompt)}`, {
       method: 'GET',
     });

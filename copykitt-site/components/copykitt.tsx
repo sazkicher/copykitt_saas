@@ -75,6 +75,26 @@ const CopyKitt: React.FC = () => {
         />
 			<h1 className="text-2xl font-bold">Branding Ideas AI!</h1>
 			{displayedElement}
+		
+		<footer className="row-start-3 flex gap-2 flex-wrap "> 
+			project by
+        <a
+          className="flex items-center gap-1 hover:underline hover:underline-offset-4"
+          href="https://github.com/sazkicher"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          
+		  <Image
+            aria-hidden
+            src="/github.svg"
+            alt="github icon"
+            width={16}
+            height={16}
+          />
+		sazkicher
+        </a>
+      </footer>
 		</>
 	);
 }
