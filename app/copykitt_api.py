@@ -2,11 +2,19 @@ from typing import Union
 from copykitt import generate_branding_snippet, generate_keywords
 from fastapi import FastAPI, HTTPException
 from mangum import Mangum
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 handler = Mangum(app)
 MAX_INPUT_LENGHT = 50
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.get("/generate_snippet")
 async def generate_snippet_api(prompt: str):
@@ -27,7 +35,7 @@ async def generate_snippet_and_keywords_api(prompt: str):
     validate_input_length(prompt)
     snippet = generate_branding_snippet(prompt)
     keyword = generate_keywords(prompt)
-    return {"snippet": f"{snippet}", "keyword": f"{keyword}"}
+    return {"snippet": snippet, "keyword": keyword}
 
 
 def validate_input_length(prompt: str):
