@@ -6,7 +6,7 @@ import Results from "./results";
 
 const CopyKitt: React.FC = () => {
 	const CHARACTER_LIMIT: number = 50;
-	const ENDPOINT: string = process.env.NEXT_PUBLIC_API_ENDPOINT || "";
+	// const ENDPOINT: string = process.env._API_ENDPOINT || "";
 	const [prompt, setPrompt] = React.useState("");
 	const [snippet, setSnippet] = React.useState("");
   const [keyword, setKeyword] = React.useState([]);
@@ -14,11 +14,31 @@ const CopyKitt: React.FC = () => {
 	const [isLoading, setIsLoading] = React.useState(false);
 
 
-	const onSubmit = () => {
+	const onSubmit = async () => {
 		console.log("Submitting: " + prompt);
 		setIsLoading(true);
-		fetch(`${ENDPOINT}?prompt=${prompt}`).then((res) => res.json()).then(onResult);
+		try {
+			const response = await fetch(`/api/proxy?prompt=${encodeURIComponent(prompt)}`, {
+			  method: 'GET', // Cambiado a GET
+			});
+	  
+			if (!response.ok) {
+			  throw new Error(`Error ${response.status}: ${response.statusText}`);
+			}
+	  
+			const data = await response.json();
+			onResult(data);
+		  } catch (error) {
+			console.error('Error fetching data:', error);
+		  } finally {
+			setIsLoading(false);
+		  }
+		// fetch(`${ENDPOINT}?prompt=${prompt}`).then((res) => res.json()).then(onResult).catch(error => {
+    //    console.error('Error fetching data:', error);
+    //  });;
 	};
+
+	// console.log(ENDPOINT);
 
 	const onResult = (data: any) => {
     setSnippet(data.snippet);

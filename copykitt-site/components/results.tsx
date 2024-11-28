@@ -2,13 +2,15 @@ interface ResultsProps {
 	prompt: string;
 	snippet: string;
 	keyword: string[];
-	onBack:any;
+	onBack:() => void;
 }
 
 
 const Results: React.FC<ResultsProps> = (props) => {
 	const keywordElements = [];
-	for (let i = 0; i <props.keyword.length; i++){
+	const keywordLen = props.keyword && props.keyword.length > 0 ? props.keyword.length : 1;
+	
+	for (let i = 0; i < keywordLen; i++){
 		const element = <div key={i}>#{props.keyword[i]}</div>
 		keywordElements.push(element);
 	}
