@@ -175,18 +175,24 @@ const CopyKitt: React.FC = () => {
 	  };
 	  /* End theme dark/light option */
 
-	const onSubmit = async () => {
+	  const onSubmit = async () => {
 		console.log("Submitting: " + prompt);
 		setIsLoading(true);
 		try {
+			const controller = new AbortController();
+			const timeoutId = setTimeout(() => controller.abort(), 30000); // 30 segundos
+	
 			const response = await fetch(`/api/proxy?prompt=${encodeURIComponent(prompt)}`, {
 				method: 'GET',
+				signal: controller.signal, // Agrega soporte para tiempo de espera
 			});
-
+	
+			clearTimeout(timeoutId);
+	
 			if (!response.ok) {
 				throw new Error(`Error ${response.status}: ${response.statusText}`);
 			}
-
+	
 			const data = await response.json();
 			onResult(data);
 		} catch (error) {
@@ -194,9 +200,6 @@ const CopyKitt: React.FC = () => {
 		} finally {
 			setIsLoading(false);
 		}
-		// fetch(`${ENDPOINT}?prompt=${prompt}`).then((res) => res.json()).then(onResult).catch(error => {
-		//    console.error('Error fetching data:', error);
-		//  });;
 	};
 
 	// console.log(ENDPOINT);
