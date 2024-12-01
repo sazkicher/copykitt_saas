@@ -69,24 +69,23 @@ const CopyKitt: React.FC = () => {
 		<div className="h-screen flex">
 
 			<div className="max-w-md m-auto p-2">
-				<div className=" bg-gray-200 dark:bg-gray-800 p-6 rounded-md "> 
+				<div className=" bg-gray-200 dark:bg-slate-800 p-6 rounded-md "> 
 					<div className="text-center my-6">
 						<Image
-							className="dark:invert mx-auto"
+							className="dark:invert mx-auto " /*invert image*/
 							src={logo}
 							alt="Next.js logo"
 							width={64}
 							height={64}
 							priority
 						/>
-						<h1 className={gradientTextStyle +" text-3xl font-light"}>Branding Ideas AI</h1>
-						<div> Your AI branding asistant</div>
+						<h1 className={gradientTextStyle +" text-3xl"}>Branding Ideas AI</h1>
+						<div className={gradientTextStyle}> Your AI branding asistant</div>
 					</div>
 					{displayedElement}
 				</div>
 
-
-				<footer className="row-start-3 flex gap-2 flex-wrap ">
+				<div className="flex justify-center gap-2 flex-wrap"> 
 					project by
 					<a
 						className="flex items-center gap-1 hover:underline hover:underline-offset-4"
@@ -94,7 +93,6 @@ const CopyKitt: React.FC = () => {
 						target="_blank"
 						rel="noopener noreferrer"
 					>
-
 						<Image
 							aria-hidden
 							src="/github-white.svg"
@@ -104,7 +102,7 @@ const CopyKitt: React.FC = () => {
 						/>
 						sazkicher
 					</a>
-				</footer>
+				</div>
 			</div>
 
 		</div>
