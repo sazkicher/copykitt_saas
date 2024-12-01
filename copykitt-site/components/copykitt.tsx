@@ -20,6 +20,8 @@ const CopyKitt: React.FC = () => {
 	/* Start theme dark/light option */
 	// Initialize theme based on localStorage or system preferences
 	useEffect(() => {
+		if (typeof window === "undefined") return;
+	
 		const html = document.querySelector("html");
 		if (!html) return;
 	
@@ -44,6 +46,8 @@ const CopyKitt: React.FC = () => {
 	  };
 
 	  useEffect(() => {
+		if (typeof window === "undefined") return;
+	
 		const handleOutsideClick = (event: MouseEvent) => {
 		  if (
 			!event.target ||
@@ -61,6 +65,8 @@ const CopyKitt: React.FC = () => {
 	  }, []);
 	
 	  const handleThemeChange = (newTheme: string) => {
+		if (typeof window === "undefined") return;
+	
 		const html = document.querySelector("html");
 		if (!html) return;
 	
@@ -81,6 +87,8 @@ const CopyKitt: React.FC = () => {
 	  };
 	
 	  const getThemeIcon = () => {
+		if (typeof window === "undefined") return null;
+	
 		if (theme === "dark") {
 		  return (
 			<svg
@@ -125,7 +133,6 @@ const CopyKitt: React.FC = () => {
 		  );
 		}
 	
-		// If theme is auto, check system preferences
 		const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
 		return prefersDark ? (
 		  <svg
@@ -165,7 +172,7 @@ const CopyKitt: React.FC = () => {
 		  </svg>
 		);
 	  };
-	/* End theme dark/light option */
+	  /* End theme dark/light option */
 
 	const onSubmit = async () => {
 		console.log("Submitting: " + prompt);
@@ -296,7 +303,7 @@ const CopyKitt: React.FC = () => {
 					>
 						<Image
 							aria-hidden
-							src="/github-white.svg"
+							src="/github.svg"
 							alt="github_logo"
 							width={16}
 							height={16}
