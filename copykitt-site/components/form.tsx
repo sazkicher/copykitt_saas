@@ -22,7 +22,7 @@ const Form: React.FC<FormProps> = (props) => {
 				Tell me what your brand is about and I will generate copy and keywords
 				for you.
 			</p>
-			<input className="border border-black px-0 py-0 rounded focus:outline focus:outline-1 focus:outline-blue-500" type="text" placeholder="coffee" value={props.prompt} onChange={(e) => updatePromptValue(e.currentTarget.value)} />
+			<input className="border border-black px-0 py-0 rounded focus:outline focus:outline-1 focus:outline-blue-500 text-black" type="text" placeholder="coffee" value={props.prompt} onChange={(e) => updatePromptValue(e.currentTarget.value)} />
 			<div>{props.prompt.length}/{props.characterLimit} </div>
 			<button className="border border-black px-1 py-0 rounded focus:outline focus:outline-1 focus:outline-blue-500" onClick={props.onSubmit} disabled={props.isLoading || !isPromptValid}> Submit </button>
 		</>

@@ -4,8 +4,8 @@
 
 html,
 :root {
-  --background: #92669ab4;
-  --foreground: #000000;
+  --background: #1a202c; /* #e7b2f0b4 purple #1a202c dark gray*/
+  --foreground: #ffffff;
 }
 
 @media (prefers-color-scheme: light) {
