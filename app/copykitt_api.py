@@ -1,5 +1,5 @@
 from typing import Union
-from copykitt import generate_branding_snippet, generate_keywords
+from copykitt import generate_branding_snippet, generate_keywords, generate_logo
 from fastapi import FastAPI, HTTPException
 from mangum import Mangum
 from fastapi.middleware.cors import CORSMiddleware
@@ -27,7 +27,7 @@ async def generate_snippet_api(prompt: str):
 async def generate_keywords_api(prompt: str):
     validate_input_length(prompt)
     keyword = generate_keywords(prompt)
-    return {"snippet": None, "keyword": f"{keyword}"}
+    return {"snippet": None, "keyword": keyword}
 
 
 @app.get("/generate_snippet_and_keywords")
@@ -37,6 +37,13 @@ async def generate_snippet_and_keywords_api(prompt: str):
     keyword = generate_keywords(prompt)
     return {"snippet": snippet, "keyword": keyword}
 
+@app.get("/generate_snippet_keywords_and_logo")
+async def generate_snippet_keywords_and_logo_api(prompt: str):
+    validate_input_length(prompt)
+    snippet = generate_branding_snippet(prompt)
+    keyword = generate_keywords(prompt)
+    logo = generate_logo(prompt)
+    return {"snippet": snippet, "keyword": keyword, "logoUrl": logo}
 
 def validate_input_length(prompt: str):
     if len(prompt) >= MAX_INPUT_LENGHT:

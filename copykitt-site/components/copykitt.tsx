@@ -12,6 +12,7 @@ const CopyKitt: React.FC = () => {
 	const [prompt, setPrompt] = React.useState("");
 	const [snippet, setSnippet] = React.useState("");
 	const [keyword, setKeyword] = React.useState([]);
+	const [logoUrl, setlogoUrl] = React.useState("");
 	const [hasResult, setHasResult] = React.useState(false);
 	const [isLoading, setIsLoading] = React.useState(false);
 	const [isDropdownOpen, setIsDropdownOpen] = React.useState(false);
@@ -203,6 +204,7 @@ const CopyKitt: React.FC = () => {
 	const onResult = (data: any) => {
 		setSnippet(data.snippet);
 		setKeyword(data.keyword);
+		setlogoUrl(data.logoUrl);
 		setHasResult(true);
 		setIsLoading(false);
 	};
@@ -216,9 +218,10 @@ const CopyKitt: React.FC = () => {
 
 	console.log(snippet)
 	console.log(keyword)
+	console.log(logoUrl)
 
 	if (hasResult) {
-		displayedElement = <Results snippet={snippet} keyword={keyword} onBack={onReset} prompt={prompt} />
+		displayedElement = <Results snippet={snippet} keyword={keyword} onBack={onReset} prompt={prompt} logoUrl={logoUrl}/>
 	} else {
 		displayedElement = <Form prompt={prompt} setPrompt={setPrompt} onSubmit={onSubmit} isLoading={isLoading} characterLimit={CHARACTER_LIMIT} />;
 	}
