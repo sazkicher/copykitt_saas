@@ -4,15 +4,20 @@
 
 html,
 :root {
-  --background: #1a202c; /* #e7b2f0b4 purple #1a202c dark gray*/
-  --foreground: #ffffff;
+  --background: #ffffff; 
+  --foreground: #000000; 
+  --svg-fill-color: black;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    --background: #ffffff;
-    --foreground: #000000;
-  }
+
+html.dark {
+  --background: #1a202c; 
+  --foreground: #ffffff; 
+  --svg-fill-color: white;
+}
+
+.svg-icon {
+  color: var(--svg-fill-color);
 }
 
 body {
