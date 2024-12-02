@@ -62,17 +62,29 @@ Visit http://localhost:3000 in your browser to view the application.
 ### **Project Structure**
 
 .
+
 ├── public/             # Static assets (e.g., images, icons)
+
 ├── src/
+
 │   ├── app/            # Next.js app directory with routing logic
+
 │   │   ├── api/        # API proxy implementation
+
 │   │   │   └── proxy/  # Serverless proxy functions
+
 │   │   ├── components/ # UI components (e.g., Form, Results)
+
 │   │   └── pages/      # Page-level components
+
 │   ├── styles/         # Global and component-specific styles
+
 │   └── utils/          # Utility functions
+
 ├── .env.local          # Local environment variables
+
 ├── package.json        # Dependencies and scripts
+
 └── README.md           # Project documentation
 
 
